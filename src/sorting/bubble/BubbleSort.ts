@@ -26,7 +26,6 @@ class BubbleSort<Type> extends AbstractSorter<Type> {
         super(order);
     }
 
-// [1, 9, 2, 8, 3, 7, 4, 6, 5, 0]
     public sortInPlace(array: Sortable<Type>): Sortable<Type> {
         let x = array.length;
         do {

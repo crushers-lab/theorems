@@ -1,6 +1,6 @@
-import _ from "lodash";
 import SortOrder from "../enums/SortOrder";
 import {CompareNotImplementedException} from "../exceptions";
+import {isPrimitive} from "../helpers/types";
 import {compare, CompareFunction, ComparisionResult, isComparable} from "../interfaces/IComparable";
 import ISorter, {Sortable, SortableItem} from "../interfaces/ISorter";
 
@@ -25,29 +25,27 @@ abstract class AbstractSorter<Type> implements ISorter<Type> {
         this._compareFunc = func;
     }
 
-    public sort(a: Sortable<Type>): Sortable<Type> {
-        const array = [...a];
-        this.sortInPlace(array);
-        return array;
+    public sort(array: Sortable<Type>): Sortable<Type> {
+        const a = [...array];
+        this.sortInPlace(a);
+        return a;
     }
+
     public abstract sortInPlace(array: Sortable<Type>): void;
 
     protected compare(a: SortableItem<Type>, b: SortableItem<Type>): ComparisionResult {
         let result: ComparisionResult;
-        if (_.isString(a) || _.isNumber(a) || _.isBoolean(a)) {
-            if (a === b) {
-                return 0;
-            }
-            result = a > b ? 1 : -1;
+        if (isPrimitive(a)) {
+            result = a === b ? 0 : a > b ? 1 : -1;
         } else if (isComparable(a) && isComparable(b)) {
             result = compare(a, b);
-            if (result === 0) {
-                return 0;
-            }
         } else if (this._compareFunc) {
             result = this._compareFunc(a, b);
         } else {
             throw new CompareNotImplementedException();
+        }
+        if (result === 0) {
+            return 0;
         }
         return (this.order === SortOrder.ASC ? result : result * -1) as ComparisionResult;
     }

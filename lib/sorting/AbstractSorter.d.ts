@@ -7,7 +7,7 @@ declare abstract class AbstractSorter<Type> implements ISorter<Type> {
     private _compareFunc?;
     protected constructor(order?: SortOrder);
     compareFunc(func: CompareFunction<SortableItem<Type>>): void;
-    sort(a: Sortable<Type>): Sortable<Type>;
+    sort(array: Sortable<Type>): Sortable<Type>;
     abstract sortInPlace(array: Sortable<Type>): void;
     protected compare(a: SortableItem<Type>, b: SortableItem<Type>): ComparisionResult;
     protected swap(array: Sortable<Type>, i: number, j: number): void;
