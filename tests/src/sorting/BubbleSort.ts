@@ -148,7 +148,7 @@ describe("Testing bubble sort on random with and without compare function", () =
         }).toThrowError(new CompareNotImplementedException());
     });
     it("Should be able to sort in descending order after implementing the compare function", () => {
-        sort.compareFunc((a, b) => a.make === b.make ? 0 : a.make > b.make ? 1 : -1);
+        sort.compareFunc((a: any, b: any) => a.make === b.make ? 0 : a.make > b.make ? 1 : -1);
         const result = sort.sort(array);
         expect(result).toEqual(sortedArray.reverse());
     });
