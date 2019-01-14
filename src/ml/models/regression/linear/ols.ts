@@ -47,11 +47,10 @@ class OlsRegression extends BasePredictor {
          * (X(Transpose) * X )(Inverse) * X(transpose)
          */
         const xInverseT = Matrix.multiply(inverse, transpose);
-
         /**
          * xy
          */
-        const [vector] = Matrix.multiply(xInverseT, [this.vector]);
+        const [vector] = Matrix.transpose(Matrix.multiply(xInverseT, Matrix.transpose([this.vector])));
         this._estimator = vector;
     }
 

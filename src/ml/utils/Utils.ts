@@ -1,4 +1,4 @@
-import {Matrix, Vector} from "../models/IEstimator";
+import {Matrix, Vector} from "./types";
 
 class Utils {
     public static _cloneMatrix(matrix: Matrix<number>): Matrix<number> {

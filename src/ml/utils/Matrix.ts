@@ -33,12 +33,6 @@ class Matrix {
                 }
             }
         }
-        for (let i = 0; i < n; i++) {
-            let a = adj[i][i];
-            for (let j = 0; j < n2; j++) {
-                adj[i][j] /= a;
-            }
-        }
         let count = 0;
         for (let i = 0; i < n; i++) {
             if (adj[n - 1][i] === 0) {
@@ -47,6 +41,12 @@ class Matrix {
         }
         if (count === n) {
             throw new Error("Cannot find inverse of matrix");
+        }
+        for (let i = 0; i < n; i++) {
+            let a = adj[i][i];
+            for (let j = 0; j < n2; j++) {
+                adj[i][j] /= a;
+            }
         }
         return this.extract(adj, n, n, 0, n);
     }
