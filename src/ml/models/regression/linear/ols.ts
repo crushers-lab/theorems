@@ -2,16 +2,20 @@
  * @class Regression Using Ordinary Least Squares
  * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
  */
-import BasePredictor from "../../BasePredictor";
-import {Matrix as MatrixType, Vector} from "../../../utils/types";
 import Matrix from "../../../utils/Matrix";
+import {Matrix as MatrixType, Vector} from "../../../utils/types";
+import BasePredictor from "../../BasePredictor";
 
 class OlsRegression extends BasePredictor {
-    private _estimator?: Vector<number>;
 
     public get estimator(): Vector<number> {
         return this._estimator as Vector<number>;
     }
+
+    private static _addOne(matrix: MatrixType<number>) {
+        return matrix.map((vector: Vector<number>) => [1, ...vector]);
+    }
+    private _estimator?: Vector<number>;
 
     public fit(X: MatrixType<number>, y: Vector<number>): OlsRegression {
         super.fit(X, y);
@@ -24,13 +28,6 @@ class OlsRegression extends BasePredictor {
             throw new Error("You have to fit the model before predict");
         }
         return X.map((vector: Vector<number>) => this._calculateRow(vector));
-    }
-
-    private _calculateRow(vector: Vector<number>) {
-        const beta = this.estimator;
-        return [1, ...vector].reduce(
-            (acc: number, num: number, index: number) => acc + num * beta[index], 0
-        );
     }
 
     protected calculate() {
@@ -54,8 +51,11 @@ class OlsRegression extends BasePredictor {
         this._estimator = vector;
     }
 
-    private static _addOne(matrix: MatrixType<number>) {
-        return matrix.map((vector: Vector<number>) => [1, ...vector]);
+    private _calculateRow(vector: Vector<number>) {
+        const beta = this.estimator;
+        return [1, ...vector].reduce(
+            (acc: number, num: number, index: number) => acc + num * beta[index], 0,
+        );
     }
 }
 

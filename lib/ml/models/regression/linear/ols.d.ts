@@ -1,16 +1,12 @@
-/**
- * @class Regression Using Ordinary Least Squares
- * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
- */
-import BasePredictor from "../../BasePredictor";
 import { Matrix as MatrixType, Vector } from "../../../utils/types";
+import BasePredictor from "../../BasePredictor";
 declare class OlsRegression extends BasePredictor {
-    private _estimator?;
     readonly estimator: Vector<number>;
+    private static _addOne;
+    private _estimator?;
     fit(X: MatrixType<number>, y: Vector<number>): OlsRegression;
     predict(X: MatrixType<number>): Vector<number>;
-    private _calculateRow;
     protected calculate(): void;
-    private static _addOne;
+    private _calculateRow;
 }
 export default OlsRegression;

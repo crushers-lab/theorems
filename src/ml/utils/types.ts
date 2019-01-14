@@ -1,2 +1,2 @@
 export type Vector<Type> = Type[];
-export type Matrix<Type> = Vector<Type>[];
+export type Matrix<Type> = Array<Vector<Type>>;

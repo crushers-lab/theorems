@@ -17,7 +17,7 @@ class Matrix {
 
     public static inverse(matrix: MatrixType<number>): MatrixType<number> {
         const [m, n] = this.order(matrix);
-        if (m != n) {
+        if (m !== n) {
             throw new Error("Not a square matrix");
         }
         const id = this.identity(n);
@@ -25,7 +25,7 @@ class Matrix {
         const n2 = 2 * n;
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {
-                if (i != j) {
+                if (i !== j) {
                     const ratio = adj[j][i] / adj[i][i];
                     for (let k = 0; k < n2; k++) {
                         adj[j][k] -= ratio * adj[i][k];
@@ -43,7 +43,7 @@ class Matrix {
             throw new Error("Cannot find inverse of matrix");
         }
         for (let i = 0; i < n; i++) {
-            let a = adj[i][i];
+            const a = adj[i][i];
             for (let j = 0; j < n2; j++) {
                 adj[i][j] /= a;
             }
@@ -102,7 +102,7 @@ class Matrix {
         for (let i = 0; i < n; i++) {
             matrix[i] = [];
             for (let j = 0; j < n; j++) {
-                matrix[i][j] = (i == j) ? 1 : 0;
+                matrix[i][j] = (i === j) ? 1 : 0;
             }
         }
         return matrix;

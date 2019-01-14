@@ -2,8 +2,8 @@
  * @class Regression Using Ordinary Least Squares
  * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
  */
-import IPredictor from "./IPredictor";
 import { Matrix, Vector } from "../utils/types";
+import IPredictor from "./IPredictor";
 declare abstract class BasePredictor implements IPredictor<number> {
     protected _matrix?: Matrix<number>;
     protected _vector?: Vector<number>;
