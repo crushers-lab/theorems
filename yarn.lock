@@ -18,6 +18,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@crushers/bag@git+ssh://git@github.com:crushers-lab/bag.git":
+  version "0.0.1"
+  resolved "git+ssh://git@github.com:crushers-lab/bag.git#c26b5113f6cdf484c974d6d36faeec80de9c368e"
+  dependencies:
+    lodash "^4.17.11"
+    log4js "^3.0.6"
+
 "@types/benchmark@^1.0.31":
   version "1.0.31"
   resolved "https://registry.yarnpkg.com/@types/benchmark/-/benchmark-1.0.31.tgz#2dd3514e93396f362ba5551a7c9ff0da405c1d38"

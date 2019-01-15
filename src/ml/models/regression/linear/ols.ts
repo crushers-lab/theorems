@@ -2,8 +2,8 @@
  * @class Regression Using Ordinary Least Squares
  * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
  */
-import Matrix from "../../../utils/Matrix";
-import {Matrix as MatrixType, Vector} from "../../../utils/types";
+import Matrix, {MatrixType, VectorType as Vector} from "@crushers/bag/lib/Matrix";
+
 import BasePredictor from "../../BasePredictor";
 
 class OlsRegression extends BasePredictor {
@@ -12,9 +12,14 @@ class OlsRegression extends BasePredictor {
         return this._estimator as Vector<number>;
     }
 
-    private static _addOne(matrix: MatrixType<number>) {
-        return matrix.map((vector: Vector<number>) => [1, ...vector]);
+    private static _addOne(matrix: Matrix) {
+        return new Matrix(
+            matrix
+                .matrix
+                .map((vector: Vector<number>) => [1, ...vector]),
+        );
     }
+
     private _estimator?: Vector<number>;
 
     public fit(X: MatrixType<number>, y: Vector<number>): OlsRegression {
@@ -33,21 +38,22 @@ class OlsRegression extends BasePredictor {
     protected calculate() {
         super.calculate();
         const x = OlsRegression._addOne(this.matrix);
-        const transpose = Matrix.transpose(x);
+        const transpose = x.transpose();
         /**
          * X(Transpose) * X
          */
-        const xT = Matrix.multiply(transpose, x);
-        const inverse = Matrix.inverse(xT);
+        const xT = transpose.multiply(x);
+        const inverse = xT.inverse();
 
         /**
          * (X(Transpose) * X )(Inverse) * X(transpose)
          */
-        const xInverseT = Matrix.multiply(inverse, transpose);
+        const xInverseT = inverse.multiply(transpose);
         /**
          * xy
          */
-        const [vector] = Matrix.transpose(Matrix.multiply(xInverseT, Matrix.transpose([this.vector])));
+        const vectorMatrix = new Matrix([this.vector]);
+        const [vector] = xInverseT.multiply(vectorMatrix.transpose()).transpose().matrix;
         this._estimator = vector;
     }
 

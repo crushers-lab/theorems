@@ -2,31 +2,31 @@
  * @class Regression Using Ordinary Least Squares
  * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
  */
-import {Matrix, Vector} from "../utils/types";
-import Utils from "../utils/Utils";
+import Matrix, {MatrixType, MatrixUtils, VectorType as Vector} from "@crushers/bag/lib/Matrix";
+
 import IPredictor from "./IPredictor";
 
 abstract class BasePredictor implements IPredictor<number> {
-    protected _matrix?: Matrix<number>;
+    protected _matrix?: Matrix;
     protected _vector?: Vector<number>;
 
-    protected get matrix(): Matrix<number> {
-        return this._matrix as Matrix<number>;
+    protected get matrix(): Matrix {
+        return this._matrix as Matrix;
     }
 
     protected get vector(): Vector<number> {
         return this._vector as Vector<number>;
     }
 
-    public fit(X: Matrix<number>, y: Vector<number>): IPredictor<number> {
-        this._matrix = Utils._cloneMatrix(X);
+    public fit(X: MatrixType<number>, y: Vector<number>): IPredictor<number> {
+        this._matrix = new Matrix(MatrixUtils.cloneMatrix(X));
         if (y) {
-            this._vector = Utils._cloneVector(y);
+            this._vector = MatrixUtils.cloneVector(y);
         }
         return this;
     }
 
-    public abstract predict(X: Matrix<number>): Vector<number>;
+    public abstract predict(X: MatrixType<number>): Vector<number>;
 
     protected calculate() {
         if (!this._matrix || !this._vector) {

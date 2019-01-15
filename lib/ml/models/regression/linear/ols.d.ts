@@ -1,4 +1,8 @@
-import { Matrix as MatrixType, Vector } from "../../../utils/types";
+/**
+ * @class Regression Using Ordinary Least Squares
+ * @link https://en.wikipedia.org/wiki/Ordinary_least_squares
+ */
+import { MatrixType, VectorType as Vector } from "@crushers/bag/lib/Matrix";
 import BasePredictor from "../../BasePredictor";
 declare class OlsRegression extends BasePredictor {
     readonly estimator: Vector<number>;

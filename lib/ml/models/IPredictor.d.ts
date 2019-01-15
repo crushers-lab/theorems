@@ -1,6 +1,6 @@
-import { Matrix, Vector } from "../utils/types";
+import { MatrixType, VectorType as Vector } from "@crushers/bag/lib/Matrix";
 interface IPredictor<Type> {
-    predict(X: Matrix<Type>): Vector<Type>;
-    fit(X: Matrix<Type>, y: Vector<Type>): IPredictor<Type>;
+    predict(X: MatrixType<number>): Vector<Type>;
+    fit(X: MatrixType<number>, y: Vector<Type>): IPredictor<Type>;
 }
 export default IPredictor;

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/ml/models/BaseEstimator.ts</title>
+    <title>Code coverage report for src/ml/utils1/Utils.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">All files</a> / <a href="index.html">src/ml/models</a> BaseEstimator.ts
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/ml/utils1</a> Utils.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/9</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/7</span>
       </div>
     </div>
   </div>
@@ -56,45 +56,39 @@
 11
 12
 13
-14
-15
-16</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+14</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Matrix, {VectorType as Vector} from "@crushers/bag/lib/Matrix";
-import IEstimator from "./IEstimator";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Matrix, Vector} from "./types";
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >abstract class BaseEstimator implements IEstimator&lt;number&gt; {</span></span>
-    public abstract fit(X: Matrix, y?: Vector&lt;number&gt;): BaseEstimator;
-&nbsp;
-<span class="fstat-no" title="function not covered" >    public <span class="cstat-no" title="statement not covered" >fitTransform(</span>X: Matrix, y?: Vector&lt;number&gt;): Matrix {</span>
-<span class="cstat-no" title="statement not covered" >        this.fit(X, y);</span>
-<span class="cstat-no" title="statement not covered" >        return this.transform(X, y);</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >class Utils {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public static <span class="cstat-no" title="statement not covered" >_cloneMatrix(</span>matrix: Matrix&lt;number&gt;): Matrix&lt;number&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        return matrix.map(<span class="fstat-no" title="function not covered" >(</span>vector: Vector&lt;number&gt;) =&gt; <span class="cstat-no" title="statement not covered" >this._cloneVector(vector))</span>;</span>
     }
 &nbsp;
-    public abstract transform(X: Matrix, y?: Vector&lt;number&gt;): Matrix;
+<span class="fstat-no" title="function not covered" >    public static <span class="cstat-no" title="statement not covered" >_cloneVector(</span>vector: Vector&lt;number&gt;): Vector&lt;number&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        return [...vector];</span>
+    }
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default BaseEstimator;</span>
+<span class="cstat-no" title="statement not covered" >export default Utils;</span>
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 16 2019 02:13:45 GMT+0530 (India Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 16 2019 02:13:30 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
