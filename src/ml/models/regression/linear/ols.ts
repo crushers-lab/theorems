@@ -12,14 +12,6 @@ class OlsRegression extends BasePredictor {
         return this._estimator as Vector<number>;
     }
 
-    private static _addOne(matrix: Matrix) {
-        return new Matrix(
-            matrix
-                .matrix
-                .map((vector: Vector<number>) => [1, ...vector]),
-        );
-    }
-
     private _estimator?: Vector<number>;
 
     public fit(X: MatrixType<number>, y: Vector<number>): OlsRegression {
@@ -37,7 +29,7 @@ class OlsRegression extends BasePredictor {
 
     protected calculate() {
         super.calculate();
-        const x = OlsRegression._addOne(this.matrix);
+        const x = this.matrix.addColumn(1, 0);
         const transpose = x.transpose();
         /**
          * X(Transpose) * X

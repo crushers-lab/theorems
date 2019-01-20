@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/ml/models/processors/pre/StandardScalar.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">All files</a> / <a href="index.html">src/ml/models/processors/pre</a> StandardScalar.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {MatrixType, VectorType} from "@crushers/bag/lib/Matrix";
+<span class="cstat-no" title="statement not covered" >import {MatrixUtils} from "@crushers/bag/lib/Matrix";</span>
+<span class="cstat-no" title="statement not covered" >import {mean, standardDeviation} from "../../../../math/stats";</span>
+<span class="cstat-no" title="statement not covered" >import BaseEstimator from "../../BaseEstimator";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >class StandardScalar extends <span class="cstat-no" title="statement not covered" >BaseEstimator </span></span>{</span>
+    private _sd?: VectorType&lt;number&gt;;
+    private _mean?: VectorType&lt;number&gt;;
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public get mean(): VectorType&lt;number&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        return this._mean as VectorType&lt;number&gt;;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public get sd(): VectorType&lt;number&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        return this._sd as VectorType&lt;number&gt;;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public <span class="cstat-no" title="statement not covered" >fit(</span>X: MatrixType&lt;number&gt;, y?: VectorType&lt;number&gt;): StandardScalar {</span>
+<span class="cstat-no" title="statement not covered" >        super.fit(X, y);</span>
+        const matrix = <span class="cstat-no" title="statement not covered" >MatrixUtils.transpose(this.matrix);</span>
+<span class="cstat-no" title="statement not covered" >        this._mean = matrix.map(<span class="fstat-no" title="function not covered" >(</span>vector: VectorType&lt;number&gt;) =&gt; <span class="cstat-no" title="statement not covered" >mean(vector))</span>;</span>
+<span class="cstat-no" title="statement not covered" >        this._sd = matrix.map(<span class="fstat-no" title="function not covered" >(</span>vector: VectorType&lt;number&gt;) =&gt; <span class="cstat-no" title="statement not covered" >standardDeviation(vector))</span>;</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public <span class="cstat-no" title="statement not covered" >transform(</span>X: MatrixType&lt;number&gt;, _y?: VectorType&lt;number&gt;): MatrixType&lt;number&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >        return X.map(</span>
+<span class="fstat-no" title="function not covered" >            (</span>vector: VectorType&lt;number&gt;) =&gt;
+<span class="cstat-no" title="statement not covered" >                vector.map(<span class="fstat-no" title="function not covered" >(</span>value: number, index: number) =&gt; <span class="cstat-no" title="statement not covered" >this.normalize(value, index))</span>,</span>
+        );
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    private <span class="cstat-no" title="statement not covered" >normalize(</span>value: number, index: number): number {</span>
+<span class="cstat-no" title="statement not covered" >        return (value - this.mean[index]) / this.sd[index];</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export default StandardScalar;</span>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jan 20 2019 23:46:41 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

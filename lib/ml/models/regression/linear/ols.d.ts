@@ -6,7 +6,6 @@ import { MatrixType, VectorType as Vector } from "@crushers/bag/lib/Matrix";
 import BasePredictor from "../../BasePredictor";
 declare class OlsRegression extends BasePredictor {
     readonly estimator: Vector<number>;
-    private static _addOne;
     private _estimator?;
     fit(X: MatrixType<number>, y: Vector<number>): OlsRegression;
     predict(X: MatrixType<number>): Vector<number>;

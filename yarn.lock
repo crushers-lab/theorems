@@ -20,7 +20,7 @@
 
 "@crushers/bag@git+ssh://git@github.com:crushers-lab/bag.git":
   version "0.0.1"
-  resolved "git+ssh://git@github.com:crushers-lab/bag.git#c26b5113f6cdf484c974d6d36faeec80de9c368e"
+  resolved "git+ssh://git@github.com:crushers-lab/bag.git#e2a18dae8b886bfedb1dc9f058ef727e8c28f997"
   dependencies:
     lodash "^4.17.11"
     log4js "^3.0.6"
