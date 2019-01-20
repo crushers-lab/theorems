@@ -22,7 +22,7 @@ class OlsRegression extends BasePredictor {
          * X(Transpose) * X
          */
         const xT = transpose.multiply(x);
-        const inverse = xT.inverse();
+        const inverse = xT.pInverse();
 
         /**
          * (X(Transpose) * X )(Inverse) * X(transpose)

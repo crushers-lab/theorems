@@ -1,9 +1,9 @@
 import GradientDescentRegression from "./GradientDescent";
-import OLSRegression from "./ols";
+import LinearRegression from "./ols";
 import SGDRegression from "./SGD";
 
 export {
-    OLSRegression,
+    LinearRegression,
     GradientDescentRegression,
     SGDRegression,
 };
