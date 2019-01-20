@@ -4,27 +4,14 @@
  */
 import Matrix, {MatrixType, VectorType as Vector} from "@crushers/bag/lib/Matrix";
 
-import BasePredictor from "../../BasePredictor";
+import BasePredictor from "./BasePredictor";
 
 class OlsRegression extends BasePredictor {
-
-    public get estimator(): Vector<number> {
-        return this._estimator as Vector<number>;
-    }
-
-    private _estimator?: Vector<number>;
 
     public fit(X: MatrixType<number>, y: Vector<number>): OlsRegression {
         super.fit(X, y);
         this.calculate();
         return this;
-    }
-
-    public predict(X: MatrixType<number>): Vector<number> {
-        if (!this._estimator) {
-            throw new Error("You have to fit the model before predict");
-        }
-        return X.map((vector: Vector<number>) => this._calculateRow(vector));
     }
 
     protected calculate() {
@@ -47,13 +34,6 @@ class OlsRegression extends BasePredictor {
         const vectorMatrix = new Matrix([this.vector]);
         const [vector] = xInverseT.multiply(vectorMatrix.transpose()).transpose().matrix;
         this._estimator = vector;
-    }
-
-    private _calculateRow(vector: Vector<number>) {
-        const beta = this.estimator;
-        return [1, ...vector].reduce(
-            (acc: number, num: number, index: number) => acc + num * beta[index], 0,
-        );
     }
 }
 

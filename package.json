@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "@crushers/bag": "git+ssh://git@github.com:crushers-lab/bag.git",
+    "@types/random-js": "^1.0.31",
     "lodash": "^4.17.11",
-    "log4js": "^3.0.6"
+    "log4js": "^3.0.6",
+    "random-js": "^1.0.8"
   },
   "devDependencies": {
     "@types/benchmark": "^1.0.31",
