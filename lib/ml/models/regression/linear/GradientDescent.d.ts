@@ -1,5 +1,5 @@
-import { MatrixOp, MatrixType, VectorType, VectorType as Vector } from "@crushers/bag/lib/Matrix";
-import BasePredictor from "../../BasePredictor";
+import { MatrixOp, MatrixType, VectorType } from "@crushers/bag/lib/Matrix";
+import BasePredictor from "./BasePredictor";
 /**
  * @algorithm:
  * ```
@@ -18,7 +18,6 @@ import BasePredictor from "../../BasePredictor";
  * @class GradientDescent regression
  */
 declare class GradientDescent extends BasePredictor {
-    readonly estimator: Vector<number>;
     readonly iterations: number;
     readonly rate: number;
     static calculateTheta(theta: MatrixOp, rate: number, gradients: MatrixOp): void;
@@ -26,10 +25,9 @@ declare class GradientDescent extends BasePredictor {
     private static getTheta;
     private _iterations;
     private _rate;
-    private _estimator?;
-    fit(X: MatrixType<number>, y: VectorType<number>, iterations?: number, rate?: number): GradientDescent;
-    predict(X: MatrixType<number>): VectorType<number>;
+    private _seed;
+    readonly seed: number;
+    fit(X: MatrixType<number>, y: VectorType<number>, iterations?: number, rate?: number, seed?: number): GradientDescent;
     protected calculate(): void;
-    private _calculateRow;
 }
 export default GradientDescent;

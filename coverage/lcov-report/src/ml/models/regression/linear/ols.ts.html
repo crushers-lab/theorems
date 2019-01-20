@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.97% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>32/33</span>
+        <span class='fraction'>21/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/2</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.55% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/29</span>
+        <span class='fraction'>19/19</span>
       </div>
     </div>
   </div>
@@ -83,27 +83,7 @@
 38
 39
 40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+41</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,22 +94,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -152,13 +119,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,27 +129,14 @@
  */
 import Matrix, {MatrixType, VectorType as Vector} from "@crushers/bag/lib/Matrix";
 &nbsp;
-import BasePredictor from "../../BasePredictor";
+import BasePredictor from "./BasePredictor";
 &nbsp;
 class OlsRegression extends BasePredictor {
-&nbsp;
-    public get estimator(): Vector&lt;number&gt; {
-        return this._estimator as Vector&lt;number&gt;;
-    }
-&nbsp;
-    private _estimator?: Vector&lt;number&gt;;
 &nbsp;
     public fit(X: MatrixType&lt;number&gt;, y: Vector&lt;number&gt;): OlsRegression {
         super.fit(X, y);
         this.calculate();
         return this;
-    }
-&nbsp;
-    public predict(X: MatrixType&lt;number&gt;): Vector&lt;number&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._estimator) {
-<span class="cstat-no" title="statement not covered" >            throw new Error("You have to fit the model before predict");</span>
-        }
-        return X.map((vector: Vector&lt;number&gt;) =&gt; this._calculateRow(vector));
     }
 &nbsp;
     protected calculate() {
@@ -200,7 +147,7 @@ class OlsRegression extends BasePredictor {
          * X(Transpose) * X
          */
         const xT = transpose.multiply(x);
-        const inverse = xT.inverse();
+        const inverse = xT.pInverse();
 &nbsp;
         /**
          * (X(Transpose) * X )(Inverse) * X(transpose)
@@ -213,13 +160,6 @@ class OlsRegression extends BasePredictor {
         const [vector] = xInverseT.multiply(vectorMatrix.transpose()).transpose().matrix;
         this._estimator = vector;
     }
-&nbsp;
-    private _calculateRow(vector: Vector&lt;number&gt;) {
-        const beta = this.estimator;
-        return [1, ...vector].reduce(
-            (acc: number, num: number, index: number) =&gt; acc + num * beta[index], 0,
-        );
-    }
 }
 &nbsp;
 export default OlsRegression;
@@ -229,7 +169,7 @@ export default OlsRegression;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jan 20 2019 23:46:41 GMT+0530 (India Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jan 21 2019 02:58:18 GMT+0530 (India Standard Time)
 </div>
 </div>
 <script src="../../../../../prettify.js"></script>
